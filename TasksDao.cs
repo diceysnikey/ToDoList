@@ -2,7 +2,7 @@
 
 public static class TasksDao
 {
-    private const string FilePath = @"C:\Users\Erdin Zeller\RiderProjects\cstest\To_Do_List_Program\AllTasks.txt";
+    private const string FilePath = "../../../AllTasks.txt";
     
     public static List<TaskItem> ReturnLinesFromFile()
     {
