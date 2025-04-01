@@ -1,8 +1,10 @@
-﻿namespace To_Do_List_Program;
+﻿using To_Do_List_Program.Logic;
+
+namespace To_Do_List_Program.DataHandling;
 
 public static class TasksDao
 {
-    private const string FilePath = "../../../AllTasks.txt";
+    private const string FilePath = "../../../Resources/AllTasks.txt";
     
     public static List<TaskItem> ReturnLinesFromFile()
     {

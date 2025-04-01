@@ -1,4 +1,4 @@
-﻿namespace To_Do_List_Program;
+﻿namespace To_Do_List_Program.UI;
 
 public static class TasksConsole
 {

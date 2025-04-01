@@ -1,4 +1,4 @@
-﻿namespace To_Do_List_Program;
+﻿namespace To_Do_List_Program.DataHandling;
 public class TaskItem
 {
     public string Title { get; }

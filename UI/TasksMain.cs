@@ -1,4 +1,6 @@
-﻿namespace To_Do_List_Program;
+﻿using To_Do_List_Program.Logic;
+
+namespace To_Do_List_Program.UI;
 
 public static class TasksMain
 {
