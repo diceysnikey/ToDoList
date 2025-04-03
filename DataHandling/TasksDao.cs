@@ -22,11 +22,24 @@ public static class TasksDao
         
         foreach (var line in lines)
         {
+            bool isCompleted;
+            
             var parts = line.Split(": ");
             
             var fileTitle = parts[0];
-            var fileIsCompleted = bool.Parse(parts[1]);
-            taskCollection.Add(new TaskItem(fileTitle, fileIsCompleted));
+            
+            var fileIsCompleted = parts[1];
+            if (fileIsCompleted == "Completed")
+            {
+                isCompleted = true;
+            }
+            else
+            {
+                isCompleted = false;
+            }
+            
+            var filePriority= parts[2];
+            taskCollection.Add(new TaskItem(fileTitle, isCompleted, filePriority));
         }
 
         return taskCollection;
@@ -34,10 +47,10 @@ public static class TasksDao
     public static void OverwriteAllText(List<TaskItem> tasks)
     {
         File.WriteAllText(FilePath, "");
-        for (int i = 0; i < tasks.Count; i++)
+        for (var i = 0; i < tasks.Count; i++)
         {
             File.AppendAllText(FilePath,
-                $"{tasks[i].Title}: {tasks[i].IsCompleted}" +
+                $"{tasks[i].Title}: {TasksLogic.ReturnIsCompletedValueInString(tasks[i].IsCompleted)}: {tasks[i].Priority}" +
                 (i < tasks.Count - 1 ? Environment.NewLine : ""));
         }
     }
@@ -46,14 +59,14 @@ public static class TasksDao
     {
         if (new FileInfo(FilePath).Length == 0)
         {
-            File.AppendAllText(FilePath, TasksLogic.ReturnTextToString
-                (TasksLogic.ReturnCapitalizedName(newTask.Title), false));
+            File.AppendAllText(FilePath, TasksLogic.ReturnTaskToString
+                (newTask.Title, newTask.Priority));
         }
         else
         {
             File.AppendAllText(FilePath, Environment.NewLine
-                                         + TasksLogic.ReturnTextToString
-                                             (TasksLogic.ReturnCapitalizedName(newTask.Title), false));
+                                         + TasksLogic.ReturnTaskToString
+                                             (newTask.Title, newTask.Priority));
         }
     }
 }

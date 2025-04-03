@@ -30,7 +30,7 @@ public static class TasksMain
                 TasksLogic.ShowTasks();
                 break;
             case "2":
-                TasksLogic.AddTask(TasksConsole.AddTaskNameFromUser());
+                TasksLogic.AddTask(TasksConsole.AddTaskNameFromUser(), TasksConsole.AddTaskPriorityFromUser());
                 break;
             case "3":
                 TasksLogic.CompleteTask(TasksConsole.CompleteTaskNameFromUser());

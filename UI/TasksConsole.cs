@@ -25,7 +25,7 @@ public static class TasksConsole
     {
         Console.WriteLine("Do you want to repeat the program? (Y/N): ");
         var userInput = Console.ReadLine();
-        userInput = CheckNullInput(userInput).ToUpper();
+        userInput = CheckNullOrEmptyInput(userInput).ToUpper();
         
         return userInput;
     }
@@ -34,14 +34,21 @@ public static class TasksConsole
     {
         Console.WriteLine("What is your new task called?");
         var newTaskName = Console.ReadLine();
-        while (string.IsNullOrEmpty(newTaskName))
-        {
-            Console.WriteLine("Enter the name of the task you want to add!");
-            newTaskName = Console.ReadLine();
-        }
-        return newTaskName;
+        return CheckNullOrEmptyInput(newTaskName);
     }
 
+    public static string AddTaskPriorityFromUser()
+    {
+        Console.WriteLine("What priority has it?");
+        var newTaskPriority = CheckNullOrEmptyInput(Console.ReadLine()).ToUpper();
+        while (newTaskPriority != "HIGH" && newTaskPriority != "MEDIUM" && newTaskPriority != "LOW")
+        {
+            Console.WriteLine("You need to enter a valid priority name! (High, Medium, Low)");
+            newTaskPriority = CheckNullOrEmptyInput(Console.ReadLine()).ToUpper();
+        }
+        return newTaskPriority;
+    }
+    
     public static string CompleteTaskNameFromUser()
     {
         Console.WriteLine("What task did you complete?");
@@ -66,7 +73,7 @@ public static class TasksConsole
         return deleteTaskName;
     }
     
-    private static string CheckNullInput(string? userInput)
+    private static string CheckNullOrEmptyInput(string? userInput)
     {
         while (string.IsNullOrEmpty(userInput))
         {
@@ -75,5 +82,4 @@ public static class TasksConsole
         }
         return userInput;
     }
-    
 }

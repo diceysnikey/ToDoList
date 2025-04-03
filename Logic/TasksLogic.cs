@@ -9,12 +9,15 @@ public static class TasksLogic
         List<TaskItem> taskCollection = TasksDao.ReturnLinesFromFile();
         foreach (var task in taskCollection)
         {
-            Console.WriteLine($"{task.Title}: {task.IsCompleted}");
+            Console.WriteLine($"{task.Title}: {ReturnIsCompletedValueInString(task.IsCompleted)}: {task.Priority}");
         }
     }
-    public static void AddTask(string newTaskName)
+    public static void AddTask(string newTaskName, string newTaskPriority)
     {
-        var newTask = new TaskItem(newTaskName, false);
+        newTaskName = ReturnCapitalizedName(newTaskName);
+        newTaskPriority = ReturnCapitalizedPriorityName(newTaskPriority);
+        
+        var newTask = new TaskItem(newTaskName, false, newTaskPriority);
         TasksDao.AppendTaskToFile(newTask);
     }
     public static void CompleteTask(string completedTaskName)
@@ -51,14 +54,33 @@ public static class TasksLogic
         }
         
     }
+
     
-    public static string ReturnTextToString(string name, bool isCompleted)
+    public static string ReturnTaskToString(string name, string priority)
     {
-        return $"{name}: {isCompleted}";
+        return $"{name}: Not Completed: {priority}";
     }
-    public static string ReturnCapitalizedName(string name)
+    private static string ReturnCapitalizedName(string name)
     {
         name = char.ToUpper(name[0]) + name.Substring(1);
         return name;
+    }
+    private static string ReturnCapitalizedPriorityName(string priorityName)
+    {
+        priorityName = priorityName.ToLower();
+        priorityName = char.ToUpper(priorityName[0]) + priorityName.Substring(1);
+        return priorityName;
+    }
+
+    public static string ReturnIsCompletedValueInString(bool isCompleted)
+    {
+        if (isCompleted)
+        {
+            return "Completed";
+        }
+        else
+        {
+            return "Not Completed";
+        }
     }
 }
