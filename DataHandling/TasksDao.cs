@@ -6,6 +6,13 @@ public static class TasksDao
 {
     private const string FilePath = "../../../Resources/AllTasks.txt";
     
+    public static void CreateTextFile()
+    {
+        if (!File.Exists(FilePath))
+        {
+            File.Create(FilePath).Close();
+        }
+    }
     public static List<TaskItem> ReturnLinesFromFile()
     {
         var taskCollection = new List<TaskItem>();

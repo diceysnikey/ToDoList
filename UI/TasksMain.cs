@@ -1,4 +1,5 @@
-﻿using To_Do_List_Program.Logic;
+﻿using To_Do_List_Program.DataHandling;
+using To_Do_List_Program.Logic;
 
 namespace To_Do_List_Program.UI;
 
@@ -19,6 +20,7 @@ public static class TasksMain
     }
     private static void Initialization()
     {
+        TasksDao.CreateTextFile();
         TasksConsole.ShowAllCommands();
         string userCommand = TasksConsole.ReadCommandFromUser();
 
