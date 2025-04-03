@@ -10,6 +10,8 @@ public static class TasksDao
     {
         if (!File.Exists(FilePath))
         {
+            Path.GetDirectoryName(FilePath);
+            Directory.CreateDirectory(Path.GetDirectoryName(FilePath)!);
             File.Create(FilePath).Close();
         }
     }
