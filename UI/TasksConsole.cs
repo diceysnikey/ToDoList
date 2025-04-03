@@ -82,4 +82,9 @@ public static class TasksConsole
         }
         return userInput;
     }
+
+    public static void ShowWelcomeMessage()
+    {
+        Console.WriteLine("Welcome! Enter 'Q' at any time to exit. Exiting while performing an operation may cause the changes to not be saved.");
+    }
 }

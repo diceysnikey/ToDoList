@@ -7,6 +7,8 @@ public static class TasksMain
 {
     private static void Main()
     {
+        TasksConsole.ShowWelcomeMessage();
+        
         var repeat = true;
         while (repeat)
         {
