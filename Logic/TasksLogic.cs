@@ -83,4 +83,14 @@ public static class TasksLogic
             return "Not Completed";
         }
     }
+
+    public static void CheckIfQuitIsPressed(string? userInput)
+    {
+        if (userInput == "q" || userInput == "Q")
+        {
+            Console.WriteLine("Exiting...");
+            Thread.Sleep(750);
+            Environment.Exit(0);
+        }
+    }
 }

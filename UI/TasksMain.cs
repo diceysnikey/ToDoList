@@ -8,16 +8,12 @@ public static class TasksMain
     private static void Main()
     {
         TasksConsole.ShowWelcomeMessage();
-        
-        var repeat = true;
-        while (repeat)
+        Thread.Sleep(750);
+        while (true)
         {
             Initialization();
-            var userInput = TasksConsole.ReadRepeatFromUser();
-            if (userInput == "N")
-            {
-                repeat = false;
-            }
+            Thread.Sleep(1500);
+            TasksConsole.PrintRepeatToConsole();
         }
     }
     private static void Initialization()
